@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Update Rating</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="ratingForm" (ngSubmit)="onSubmit()">
+      <ion-list>
+          <ion-item>
+              <ion-label position="floating">Title</ion-label>
+              <ion-input formControlName="title" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label position="floating">Rating (1-10)</ion-label>
+              <ion-input formControlName="score" type="number" min="1" max="10"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label position="floating">Comment</ion-label>
+              <ion-textarea formControlName="review"></ion-textarea>
+          </ion-item>
+      </ion-list>
+
+      <div class="ion-padding">
+          <ion-button expand="block" type="submit" [disabled]="!ratingForm.valid">Update Rating</ion-button>
+      </div>
+  </form>
+</ion-content>

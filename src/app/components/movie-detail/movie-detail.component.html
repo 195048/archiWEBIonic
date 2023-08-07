@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="movie$ | async as movie">{{movie.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="movie$ | async as movie">
+    <ion-card-header>
+      <ion-card-title>{{movie.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{movie.synopsis}}</p>
+      <p>{{movie.actor}}</p>
+      <p>{{movie.year}}</p>
+      <ion-img [src]="movie.picture"></ion-img>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="movie$ | async as movie">
+    <ion-card-content>
+      <p>Have you watched it already? Rate it!</p>
+      <ion-button *ngIf="!userRating" [routerLink]="'/rate-movie/' + movie.title">Rate this Movie</ion-button>
+      <ion-button *ngIf="userRating" (click)="updateRating()">Update your Rating</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
