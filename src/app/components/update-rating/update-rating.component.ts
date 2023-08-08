@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RatingService } from '../../services/rating.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-update-rating',
@@ -17,7 +19,8 @@ export class UpdateRatingComponent implements OnInit {
     private fb: FormBuilder,
     private ratingService: RatingService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location 
   ) { }
 
   ngOnInit(): void {
@@ -26,25 +29,28 @@ export class UpdateRatingComponent implements OnInit {
     
     this.initForm();
     this.loadRatingData();
+    console.log("aaaaaaaaaaaa");
   }
 
   initForm(): void {
     this.ratingForm = this.fb.group({
-      title: ['', [Validators.required]],
       score: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
       review: ['']
     });
   }
 
   loadRatingData(): void {
+    
     if (this.userEmail && this.movieTitle) {
       this.ratingService.getRatingByEmailAndTitle(this.userEmail, this.movieTitle).subscribe(
         rating => {
-          this.ratingForm.patchValue({
-            title: rating.title,
-            score: rating.value,
-            review: rating.comment
-          });
+          if (rating) {
+            
+            this.ratingForm.patchValue({
+              score: rating.score || '', // Same here
+              review: rating.review || '' // And here
+            });
+          }
         },
         error => {
           console.error('Error loading rating data:', error);
@@ -52,19 +58,28 @@ export class UpdateRatingComponent implements OnInit {
       );
     }
   }
+  
 
   onSubmit(): void {
     if (this.ratingForm.valid) {
-      const ratingData = this.ratingForm.value;
-      this.ratingService.updateRatingByEmailAndTitle(this.userEmail,this.movieTitle,this.ratingForm.score,this.ratingForm.review).subscribe(
-        () => {
-          console.log('Rating updated successfully!');
-          this.router.navigate(['/home']);
-        },
-        error => {
-          console.error('Error updating rating:', error);
+        const ratingData = this.ratingForm.value;
+        if (this.userEmail && this.movieTitle) {
+            this.ratingService.updateRatingByEmailAndTitle(
+                this.userEmail,
+                this.movieTitle,
+                this.ratingForm.get('score')!.value,
+                this.ratingForm.get('review')!.value
+            ).subscribe(
+                () => {
+                    console.log('Rating updated successfully!');
+                    this.location.back();
+                },
+                error => {
+                    console.error('Error updating rating:', error);
+                }
+            );
         }
-      );
     }
   }
+
 }

@@ -1,0 +1,10 @@
+<ion-card *ngFor="let rating of myRatings">
+  <ion-card-header>
+      <ion-card-title>{{ rating.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+      <p>Review: {{ rating.review }}</p>
+      <p>Score: {{ rating.score }}</p>
+      <ion-button (click)="editRating(rating.title)">Edit Rating</ion-button>
+  </ion-card-content>
+</ion-card>

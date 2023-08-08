@@ -34,6 +34,7 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<any> {
+    console.log(user);
     return this.http.put<any>(`${this.apiUrl}/${user.email}`, user, this.getHttpOptions());
   }
 

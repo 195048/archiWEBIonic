@@ -5,6 +5,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { RateMovieComponent } from './components/rate-movie/rate-movie.component';
 import { UpdateRatingComponent } from './components/update-rating/update-rating.component';
+import { MyMoviesComponent  } from './components/my-movies/my-movies.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -30,7 +32,15 @@ const routes: Routes = [
   },
   {
     path : 'update-rating/:email/:title',
-    component : RateMovieComponent
+    component : UpdateRatingComponent
+  },
+  {
+    path : 'my-movies',
+    component : MyMoviesComponent
+  },
+  {
+    path : 'profile',
+    component : UserDetailsComponent
   },
   // ... (other routes if any)
 ];
