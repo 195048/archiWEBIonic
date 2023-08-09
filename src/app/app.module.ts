@@ -15,6 +15,7 @@ import { MyMoviesComponent } from './components/my-movies/my-movies.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { ChangeAddressComponent } from './components/change-address/change-address.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     MyMoviesComponent,
     UserDetailsComponent,
     ChangeAddressComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule, 

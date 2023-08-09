@@ -7,6 +7,7 @@ import { RateMovieComponent } from './components/rate-movie/rate-movie.component
 import { UpdateRatingComponent } from './components/update-rating/update-rating.component';
 import { MyMoviesComponent  } from './components/my-movies/my-movies.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path : 'profile',
     component : UserDetailsComponent
+  },
+  {
+    path : 'register',
+    component : RegisterComponent
   },
   // ... (other routes if any)
 ];
