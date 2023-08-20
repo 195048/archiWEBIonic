@@ -7,7 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://139.59.136.122:8000/api/users/login'; 
+  private apiUrl = 'https://139.59.136.122:8443/api/users/login'; 
   private authStatus = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) { }

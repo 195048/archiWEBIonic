@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 })
 export class RatingService {
 
-  API_URL = 'http://139.59.136.122:8000/api/ratings/';
+  API_URL = 'https://139.59.136.122:8443/api/ratings/';
 
   constructor(
     private http: HttpClient,
